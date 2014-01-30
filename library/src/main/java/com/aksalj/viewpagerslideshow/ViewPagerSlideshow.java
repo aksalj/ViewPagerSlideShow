@@ -53,7 +53,7 @@ public class ViewPagerSlideshow extends FrameLayout {
     }
 
     public ViewPagerSlideshow(Context context, AttributeSet attrs) {
-        super(context, attrs, R.attr.Slideshow);
+        super(context, attrs, 0);
     }
 
     public ViewPagerSlideshow(Context context, AttributeSet attrs, int defStyle) {
@@ -198,6 +198,10 @@ public class ViewPagerSlideshow extends FrameLayout {
     }
 
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener){
+        setOnSlideChangeListener(listener);
+    }
+
+    public void setOnSlideChangeListener(ViewPager.OnPageChangeListener listener){
         mIndicator.setOnPageChangeListener(listener);
     }
 

@@ -62,7 +62,7 @@ class LinePageIndicator extends View implements ViewPager.OnPageChangeListener {
     }
 
     public LinePageIndicator(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.LinePageIndicator);
+        this(context, attrs, 0);
     }
 
     public LinePageIndicator(Context context, AttributeSet attrs, int defStyle) {

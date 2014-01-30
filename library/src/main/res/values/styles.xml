@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="LinePageIndicator">
+        <!-- Use bar with gaps, or cont lines -->
+        <attr name="lineStyle">
+            <enum name="dash" value="0" />
+            <enum name="bar" value="1" />
+        </attr>
+
+        <!-- Whether or not the indicators should be centered. -->
+        <attr name="centered" format="boolean" />
+        <!-- Color of the unselected lines that represent the pages. -->
+        <attr name="unselectedColor" format="color" />
+        <!-- Color of the selected line that represents the current page. -->
+        <attr name="selectedColor"  format="color"/>
+        <!-- Width of each indicator line. -->
+        <attr name="lineWidth" format="dimension" />
+        <!-- Width of each indicator line's stroke. -->
+        <attr name="strokeWidth" format="float" />
+        <!-- Width of the gap between each indicator line. -->
+        <attr name="gapWidth" format="dimension"  />
+        <!-- View background -->
+        <attr name="android:background"/>
+    </declare-styleable>
+
+    <declare-styleable name="Slideshow">
+
+        <attr name="autoplay" format="boolean"/>
+
+        <attr name="slideDelay" format="integer"/>
+
+        <attr name="showTimer" format="boolean" />
+
+        <attr name="timerStyle">
+            <enum name="fillCircle" value="0"/>
+            <enum name="progressBar" value="1"/>
+        </attr>
+
+        <attr name="timerPosition">
+            <enum name="topLeft" value="0"/>
+            <enum name="topRight" value="1"/>
+            <enum name="bottomLeft" value="2"/>
+            <enum name="bottomRight" value="3"/>
+            <enum name="center" value="4"/>
+        </attr>
+
+        <attr name="timerOpacity" format="float"/>
+
+
+    </declare-styleable>
+
+</resources>

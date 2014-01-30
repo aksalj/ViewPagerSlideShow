@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <item type="id" name="viewpager" />
+
     <dimen name="default_line_indicator_line_width">12dp</dimen>
     <dimen name="default_line_indicator_gap_width">4dp</dimen>
     <dimen name="default_line_indicator_stroke_width">1dp</dimen>
@@ -13,7 +15,8 @@
     <bool name="default_show_timer">true</bool>
     <integer name="default_timer_style">0</integer>
     <integer name="default_timer_position">1</integer>
-    <integer name="default_slide_delay">1500</integer>
-    <item name="default_timer_opacity" format="float" type="dimen">1.0</item>
+    <integer name="default_transition">1</integer>
+    <integer name="default_slide_delay">3500</integer>
+    <fraction name="default_timer_opacity">35%</fraction>
 
 </resources>

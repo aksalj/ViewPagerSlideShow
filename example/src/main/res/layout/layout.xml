@@ -4,11 +4,51 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#eee">
 
-    <com.aksalj.viewpagerslideshow.ViewPagerSlideshow
+    <com.aksalj.viewpagerslideshow.ViewPagerSlideShow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:background="#fff"
+        android:id="@+id/slideshow"
+        app:unselectedColor="#fff"
+        app:strokeWidth="5dp"
+        app:autoPlay="true"
+        app:lineStyle="bar"
+        app:timerPosition="topLeft"
+        app:slideTransition="fade"
+
+
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="0.3">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:id="@+id/button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop"
+            android:id="@+id/button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Timer"
+            android:id="@+id/button" />
+
+    </LinearLayout>
 
 
 

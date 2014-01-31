@@ -27,19 +27,21 @@ class Slider extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if(autoSlide) // Never allow swiping to switch between pages
+        if(autoSlide){ // Never allow swiping to switch between pages
             return false;
-        else
+        }else{
             return super.onInterceptTouchEvent(event);
+        }
 
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(autoSlide) // Never allow swiping to switch between pages
+        if(autoSlide){ // Never allow swiping to switch between pages
             return false;
-        else
-            return super.onInterceptTouchEvent(event);
+        }else{
+            return super.onTouchEvent(event);
+        }
     }
 
 

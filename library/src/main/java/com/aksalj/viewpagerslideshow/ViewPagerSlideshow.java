@@ -45,6 +45,8 @@ public class ViewPagerSlideShow extends FrameLayout {
     Timer mTimer;
     TimerTask mPagerChanger;
 
+    boolean mAutoSlideMode;
+
     public ViewPagerSlideShow(Context context) {
         this(context, null);
     }
@@ -84,6 +86,7 @@ public class ViewPagerSlideShow extends FrameLayout {
 
         a.recycle();
 
+        mAutoSlideMode = mAutoPlay && mShowTimer;
 
         LinearLayout container = new LinearLayout(context);
         container.setLayoutParams(new LayoutParams(
@@ -100,7 +103,7 @@ public class ViewPagerSlideShow extends FrameLayout {
         container.addView(mPager);
         container.addView(mIndicator);
         this.addView(container);
-        if(mShowTimer) this.addView(mTimerView);
+        if(mAutoSlideMode) this.addView(mTimerView);
 
 
         if(mAutoPlay){
@@ -109,10 +112,10 @@ public class ViewPagerSlideShow extends FrameLayout {
     }
 
     private void setupViewPager(Context context){
-        boolean autoSlide = mAutoPlay && mShowTimer;
-        mPager = new Slider(context, autoSlide);
 
-        if(autoSlide)
+        mPager = new Slider(context, mAutoSlideMode);
+
+        if(mAutoSlideMode)
             mPager.setScrollDurationFactor(7); //TODO: Param me! slow down animation by a factor of x
 
 
@@ -165,8 +168,8 @@ public class ViewPagerSlideShow extends FrameLayout {
 
             //fillCircle.setFillOpacity(mTimerOpacity);
 
-            fillCircle.setRingColor(Color.WHITE); //TODO: Param me!
-            fillCircle.setFillColor(Color.WHITE); //TODO: Param me!
+            fillCircle.setRingColor(0xC67856); //TODO: Param me!
+            fillCircle.setFillColor(0xC67856); //TODO: Param me!
 
             fillCircle.setMax(mSlideDelay);
 
@@ -320,7 +323,7 @@ public class ViewPagerSlideShow extends FrameLayout {
         if(mAdapter == null) return;
         int current = mPager.getCurrentItem();
         if(current == mAdapter.getCount() - 1){
-            mPager.setCurrentItem(0,true);
+            mPager.setCurrentItem(0);
         }else{
             mPager.setCurrentItem(current+1,true);
 
@@ -331,7 +334,7 @@ public class ViewPagerSlideShow extends FrameLayout {
         if(mAdapter == null) return;
         int current = mPager.getCurrentItem();
         if(current == 0){
-            mPager.setCurrentItem(mAdapter.getCount() - 1,true);
+            mPager.setCurrentItem(mAdapter.getCount() - 1);
         }else{
             mPager.setCurrentItem(current-1,true);
         }

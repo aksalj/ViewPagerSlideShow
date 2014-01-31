@@ -13,15 +13,16 @@ public class Example extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
 
-        int[] IMAGES = new int[]{
-                R.drawable.marketing_tour1,
-                R.drawable.marketing_tour2,
-                R.drawable.marketing_tour3,
-                R.drawable.marketing_tour4,
+        String URLS[] = new String[] {
+                "http://i.imgur.com/5g697Ao.jpg",
+                "http://i.imgur.com/z7v35T7.jpg",
+                "http://i.imgur.com/7v6awZj.jpg",
+                "http://i.imgur.com/6dMetEv.png",
+                "http://i.imgur.com/49ZuJY1.jpg"
         };
 
         ViewPagerSlideShow slideshow = (ViewPagerSlideShow)findViewById(R.id.slideshow);
-        SlideShowAdapter adapter = new SlideShowAdapter(getSupportFragmentManager(),IMAGES);
+        SlideShowAdapter adapter = new SlideShowAdapter(getSupportFragmentManager(),URLS);
         slideshow.setAdapter(adapter);
 
     }

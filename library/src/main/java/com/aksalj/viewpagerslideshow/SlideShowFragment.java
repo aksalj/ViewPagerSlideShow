@@ -40,10 +40,12 @@ public class SlideShowFragment extends Fragment {
             imgRes = savedInstanceState.getInt("imgRes");
         }
 
-        if(imgUrl == null)
-            img.setImageResource(imgRes);
-        else if(imgRes != -1)
+        if(imgUrl != null)
             img.setImageUrl(imgUrl);
+        else if(imgRes != -1)
+            img.setImageResource(imgRes);
+
+        //TODO: Auto zoom & pan?
 
         return root;
     }

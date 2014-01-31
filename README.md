@@ -3,11 +3,15 @@
 
 ViewPageSlideShow is a simple transaformation of Android's `ViewPager` into a slide show widget that displays image from URLs as well as app resources.
 
+`Important: This code is incomplete, has not been fully tested and was not written for production but as a demo!`
+
 
 ##Features
 
-- Play, stop, next & previous
-- Slide timer & transitions
+- Play, stop, next & previous `TODO`
+- Slide timer & transitions`FIXME`
+- Auto zoom & pan `TODO`
+- Image title & description `TODO`
 - Asynchronous loading of images, loading happens outside the UI thread
 - Images are cached to memory and to disk for super fast loading
 
@@ -18,10 +22,21 @@ ViewPageSlideShow is a simple transaformation of Android's `ViewPager` into a sl
 
   1. Include the widget in your view.
 
-        <com.aksalj.viewpagerslideshow.ViewPagerSlideshow
-            android:id="@+id/slideshow"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent" />
+        <com.aksalj.viewpagerslideshow.ViewPagerSlideShow
+	        xmlns:app="http://schemas.android.com/apk/res-auto"
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="0.7"
+	        android:background="#fff"
+	        android:id="@+id/slideshow"
+	        app:unselectedColor="#fff"
+	        app:strokeWidth="5dp"
+	        app:autoPlay="true"
+	        app:lineStyle="bar"
+	        app:timerPosition="topRight"
+	        app:slideTransition="fade"
+	        app:timerOpacity="0.5"
+	        app:slideDelay="4500" />
 
   2. In your `onCreate` method (or `onCreateView` for a fragment), bind the
      indicator to the `ViewPager`.
@@ -56,5 +71,10 @@ ViewPageSlideShow is a simple transaformation of Android's `ViewPager` into a sl
  This project depends on the `ViewPager` class which is available in the [Android Support Library]() or [ActionBarSherlock](). 
 
 ##Customization
+`TODO`
 
 ##Credit
+`TODO`
+
+###License
+`TODO`

@@ -9,11 +9,15 @@ import android.widget.ImageView;
 
 import com.aksalj.viewpagerslideshow.image.SmartImageView;
 
-class SlideShowFragment extends Fragment {
+public class SlideShowFragment extends Fragment {
 
     int imgRes = -1;
     String imgUrl = null;
     ImageView.ScaleType mScale;
+
+    public SlideShowFragment(){
+        super();
+    }
 
     public SlideShowFragment(ImageView.ScaleType scaleType, int res){
         imgRes = res;
@@ -30,12 +34,28 @@ class SlideShowFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.slide,null);
         SmartImageView img = (SmartImageView)root.findViewById(R.id.img);
+
+        if(savedInstanceState != null){
+            imgUrl = savedInstanceState.getString("imgUrl");
+            imgRes = savedInstanceState.getInt("imgRes");
+        }
+
         if(imgUrl == null)
             img.setImageResource(imgRes);
-        else
+        else if(imgRes != -1)
             img.setImageUrl(imgUrl);
 
         return root;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putString("imgUrl",imgUrl);
+        outState.putInt("imgRes",imgRes);
+
+        super.onSaveInstanceState(outState);
+
     }
 }
 

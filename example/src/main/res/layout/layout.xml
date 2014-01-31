@@ -17,10 +17,10 @@
         app:strokeWidth="5dp"
         app:autoPlay="true"
         app:lineStyle="bar"
-        app:timerPosition="topLeft"
-        app:slideTransition="fade"
-
-
+        app:timerPosition="topRight"
+        app:slideTransition="scale"
+        app:timerOpacity="0.5"
+        app:slideDelay="4500"
         />
 
     <LinearLayout

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
@@ -11,15 +12,36 @@ import java.lang.reflect.Field;
 
 class Slider extends ViewPager {
 
-    Slider(Context context) {
+    private boolean autoSlide = false;
+
+    Slider(Context context, boolean autoSlide) {
         super(context);
         postInitViewPager();
+        this.autoSlide = autoSlide;
     }
 
     Slider(Context context, AttributeSet attrs) {
         super(context, attrs);
         postInitViewPager();
     }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        if(autoSlide) // Never allow swiping to switch between pages
+            return false;
+        else
+            return super.onInterceptTouchEvent(event);
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(autoSlide) // Never allow swiping to switch between pages
+            return false;
+        else
+            return super.onInterceptTouchEvent(event);
+    }
+
 
 
     private ScrollerCustomDuration mScroller = null;

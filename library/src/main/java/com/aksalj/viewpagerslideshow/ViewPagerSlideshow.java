@@ -40,7 +40,7 @@ public class ViewPagerSlideShow extends FrameLayout {
     Slider mPager;
     SlideShowAdapter mAdapter;
     LinePageIndicator mIndicator;
-    ProgressBar mTimerView;
+    View mTimerView;
 
     Timer mTimer;
     TimerTask mPagerChanger;
@@ -106,16 +106,17 @@ public class ViewPagerSlideShow extends FrameLayout {
         if(mAutoPlay){
             play();
         }
-
     }
 
     private void setupViewPager(Context context){
-        mPager = new Slider(context);
+        boolean autoSlide = mAutoPlay && mShowTimer;
+        mPager = new Slider(context, autoSlide);
 
-        if(mAutoPlay)
-            mPager.setScrollDurationFactor(5); // slow down animation by a factor of 5
+        if(autoSlide)
+            mPager.setScrollDurationFactor(7); //TODO: Param me! slow down animation by a factor of x
 
-        mPager.setId(R.id.viewpager);
+
+        mPager.setId(R.id.ak_viewpager);
         LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f);
         mPager.setBackgroundColor(Color.WHITE);
@@ -150,13 +151,38 @@ public class ViewPagerSlideShow extends FrameLayout {
         mIndicator = new LinePageIndicator(context, attrs);
         LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         mIndicator.setLayoutParams(layout);
+        mIndicator.setId(R.id.ak_lineindicator);
     }
 
     private void setupTimerView(){
 
         if(!mShowTimer) return;
 
-        mTimerView = new ProgressBar(mCxt);
+        if(mTimerStyle == FILL_CIRCLE){
+            FillCircleProgressView fillCircle = new FillCircleProgressView(mCxt);
+
+            fillCircle.setPadding(1,1,1,1); //TODO: Param me!
+
+            //fillCircle.setFillOpacity(mTimerOpacity);
+
+            fillCircle.setRingColor(Color.WHITE); //TODO: Param me!
+            fillCircle.setFillColor(Color.WHITE); //TODO: Param me!
+
+            fillCircle.setMax(mSlideDelay);
+
+            mTimerView = fillCircle;
+
+        }else {
+            mTimerView = new ProgressBar(mCxt);
+            mTimerView.setAlpha(mTimerOpacity);
+        }
+        mTimerView.setId(R.id.ak_progressview);
+        mTimerView.setLayoutParams(getTimerViewLayoutParams());
+
+
+    }
+
+    private LayoutParams getTimerViewLayoutParams(){
         LayoutParams params;
         switch (mTimerPos){
             case 0: //TOP_LEFT
@@ -223,10 +249,17 @@ public class ViewPagerSlideShow extends FrameLayout {
         params.width = 50;
         params.height = 50;
         params.setMargins(mTimerMargin,mTimerMargin,mTimerMargin,mTimerMargin + mIndicator.getHeight());
-        mTimerView.setLayoutParams(params);
-        mTimerView.setAlpha(mTimerOpacity);
+        return params;
+    }
 
-        //mTimerView.setBackgroundColor(Color.WHITE);
+    private void setProgress(float value){
+        if(mTimerStyle == FILL_CIRCLE){
+            FillCircleProgressView progressView = (FillCircleProgressView)mTimerView;
+            progressView.setProgress(value);
+        }else{
+            ProgressBar progressView = (ProgressBar)mTimerView;
+            progressView.setProgress((int)value);
+        }
     }
 
     public void toggleTimer(){
@@ -253,21 +286,34 @@ public class ViewPagerSlideShow extends FrameLayout {
         mPagerChanger = new TimerTask() {
             @Override
             public void run() {
+                long wait = 0;
+
+                while (wait < mSlideDelay){
+                    try {
+                        Thread.sleep(10);
+                        setProgress(wait);
+                        wait += 10;
+                    } catch (Exception e) {}
+                }
+
                 mPager.post(new Runnable() {
                     @Override
                     public void run() {
+                        setProgress(0);
                         next();
                     }
                 });
             }
         };
-        mTimer.scheduleAtFixedRate(mPagerChanger,(mSlideDelay+mSlideDelay/3),mSlideDelay);
+        mTimer.scheduleAtFixedRate(mPagerChanger,(mSlideDelay/4),mSlideDelay / 2);
     }
 
     public void stop(){
         if(mTimer == null) return;
         mTimer.cancel();
         mTimer = null;
+
+        //TODO: Disable auto slide mode?
     }
 
     public void next(){

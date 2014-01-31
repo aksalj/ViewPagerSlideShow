@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item type="id" name="viewpager" />
+    <item type="id" name="ak_viewpager" />
+    <item type="id" name="ak_lineindicator" />
+    <item type="id" name="ak_progressview" />
 
     <dimen name="default_line_indicator_line_width">12dp</dimen>
     <dimen name="default_line_indicator_gap_width">4dp</dimen>

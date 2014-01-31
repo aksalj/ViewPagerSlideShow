@@ -42,8 +42,7 @@ ViewPageSlideShow is a simple transaformation of Android's `ViewPager` into a sl
 	        app:timerOpacity="0.5"
 	        app:slideDelay="4500" />
 
-  2. In your `onCreate` method (or `onCreateView` for a fragment), bind the
-     indicator to the `ViewPager`.
+  2. In your `onCreate` method (or `onCreateView` for a fragment), add an adapter to the slide show widget
 
 		 //Have your image resources
 		 //int[] IMAGES = {R.drawable.img_1, R.drawable.img_2};
@@ -51,7 +50,7 @@ ViewPageSlideShow is a simple transaformation of Android's `ViewPager` into a sl
 		 String[] IMAGES = {"http://somesite.xx/img.png", "http://someothersite.xc/img.jpg"};
 		 
 
-         //Set the pager with an adapter
+         //Set the slideshow with an adapter
          ViewPager slideshow = (pagerSlideshow)findViewById(R.id.slideshow);
          SlideShowAdapter adapter = new SlideShowAdapter(getSupportFragmentManager(), IMAGES);
          slideshow.setAdapter(adapter);

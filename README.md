@@ -3,7 +3,9 @@
 
 ViewPageSlideShow is a simple transaformation of Android's `ViewPager` into a slide show widget that displays image from URLs as well as app resources.
 
-`Important: This code is incomplete, has not been fully tested and was not written for production but as a demo!`
+#####Important: 
+	This code is incomplete, has not been fully tested and was not written for production but as a demo! 
+	So use at your own risk ;)
 
 
 ##Features
@@ -14,6 +16,8 @@ ViewPageSlideShow is a simple transaformation of Android's `ViewPager` into a sl
 - Image title & description `TODO`
 - Asynchronous loading of images, loading happens outside the UI thread
 - Images are cached to memory and to disk for super fast loading
+
+
 
 
 ##Usage
